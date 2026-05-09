@@ -58,11 +58,11 @@ def load_skill_prompt(agent_name: str) -> str:
         raise ValueError(
             f"Skill markdown for agent '{agent_name}' is missing required sections: {missing}"
         )
-    return (
-        f"Follow this agent skill contract for '{agent_name}'. "
+    skill = (f"Follow this agent skill contract for '{agent_name}'. "
         "Do not violate non-goals or safety rules.\n\n"
-        f"{doc.content}"
-    )
+        f"{doc.content}")
+    # print(f"=================== SKILL: {skill} ====================")
+    return skill
 
 
 def load_skill_prompt_safe(phone_number, agent_name: str) -> str:
