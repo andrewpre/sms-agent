@@ -1,0 +1,17 @@
+from enum import Enum
+from tools.agent_tools import *
+
+class AgentToolset(str, Enum):
+    SMS = "sms"
+    REPORTER = "reporter"
+    PROACTIVE = "proactive"
+    EXTRACTOR = "extractor"
+
+
+async def build_toolset(
+    agent_toolset: AgentToolset, phone_number: str, allow_texting: bool = True, testing: bool = False
+):
+    tools = [
+        await make_text_tool(phone_number, testing),
+    ]
+    return tools
