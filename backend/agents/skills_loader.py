@@ -61,7 +61,6 @@ def load_skill_prompt(agent_name: str) -> str:
     skill = (f"Follow this agent skill contract for '{agent_name}'. "
         "Do not violate non-goals or safety rules.\n\n"
         f"{doc.content}")
-    # print(f"=================== SKILL: {skill} ====================")
     return skill
 
 

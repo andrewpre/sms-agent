@@ -13,5 +13,6 @@ async def build_toolset(
 ):
     tools = [
         await make_text_tool(phone_number, testing),
+        await fetch_conversations_from_database(phone_number),
     ]
     return tools

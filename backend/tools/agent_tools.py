@@ -1,7 +1,7 @@
 from langchain_core.tools import StructuredTool
 
 from lib import MongoLibrary
-from tools.schemas import TextPhoneNumber
+from tools.schemas import *
 from tools.messaging import text
 
 async def make_text_tool(phone_number: str, testing=False):
@@ -31,4 +31,16 @@ async def make_text_tool(phone_number: str, testing=False):
         ),
         args_schema=TextPhoneNumber,
         coroutine=text_user,
+    )
+
+async def fetch_conversations_from_database(phone_number: str):
+    async def fetch_last_conversations(number_of_previous_conversations: int):
+        mongo_db = MongoLibrary(phone_number=phone_number)
+        return mongo_db.fetch_last_k(number_of_previous_conversations)
+
+    return StructuredTool.from_function(
+        name="fetch_conversations_from_database",
+        description="Fetch user chats from the database",
+        args_schema=GetUserInput,
+        coroutine=fetch_last_conversations,
     )
