@@ -54,7 +54,7 @@ async def run_sms_agent(phone_id: str, message: str, test: bool) -> None:
     agent = create_agent(
         model=settings.model_name,
         tools=tools,
-        # debug=True,
+        debug=True,
     )
     system_prompt = load_skill_prompt_safe(phone_number=phone_id, agent_name="sms_agent")
     policy_prompt = (

@@ -1,5 +1,4 @@
 from langchain_core.tools import StructuredTool
-
 from lib import MongoLibrary
 from tools.schemas import *
 from tools.messaging import text
